@@ -1,1286 +1,1056 @@
-@@ -1,1000 +1,285 @@
--/* Estilos generales y variables */
--:root {
--  --primary-color: #D4AF37;
--  --secondary-color: #8B4513;
--  --text-color: #ffffff;
--  --background-color: #1a1a1a;
--  --item-background: #2a2a2a;
--  --header-background: #4c0026;
--  --main-blue: #082032;
--  --gold: #FFD700;
--  --spacing-unit: 8px;
--}
--
--* {
--  margin: 0;
--  padding: 0;
--  box-sizing: border-box;
--}
--
--body {
--  font-family: 'Open Sans', sans-serif;
--  font-size: 16px;
--  line-height: 1.6;
--  background: linear-gradient(270deg, var(--background-color), #2c2c2c, #3a3a3a);
--  background-size: 600% 600%;
--  animation: gradientTransition 15s ease infinite;
--  color: var(--text-color);
--  padding-bottom: 60px;
--}
--
--@keyframes gradientTransition {
--  0% { background-position: 0% 50% }
--  50% { background-position: 100% 50% }
--  100% { background-position: 0% 50% }
--}
--
--.container {
--  width: 100%;
--  max-width: 1200px;
--  margin: 0 auto;
--  padding: 0 var(--spacing-unit);
--}
--
--/* Estilos para el encabezado */
--#sticky-header {
--  background-color: var(--header-background);
--  color: var(--text-color);
--  padding: var(--spacing-unit) 0;
--  position: fixed;
--  top: 0;
--  left: 0;
--  width: 100%;
--  z-index: 1000;
--  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
--}
--
--.header-top {
--  display: flex;
--  justify-content: space-between;
--  align-items: center;
--  padding: calc(var(--spacing-unit) * 0.5) var(--spacing-unit);
--}
--
--.logo-container {
--  display: flex;
--  align-items: center;
--}
--
--.logo {
--  width: 50px;
--  height: 50px;
--  object-fit: contain;
--  margin-right: var(--spacing-unit);
--}
--
--h1, h2 {
--  font-family: 'Playfair Display', serif;
--  font-weight: 700;
--}
--
--h1 {
--  font-size: 24px;
--  letter-spacing: -0.5px;
--}
--
--/* Estilos para botones y enlaces */
--.btn-shine {
--  position: relative;
--  display: inline-block;
--  padding: calc(var(--spacing-unit) * 1.5) calc(var(--spacing-unit) * 6);
--  color: var(--text-color);
--  background: linear-gradient(to right, #4d4d4d 0, white 10%, #4d4d4d 20%);
--  background-position: 0;
--  -webkit-background-clip: text;
--  -webkit-text-fill-color: transparent;
--  animation: shine 3s infinite linear;
--  animation-fill-mode: forwards;
--  -webkit-text-size-adjust: none;
--  font-weight: 600;
--  font-size: 16px;
--  text-decoration: none;
--  white-space: nowrap;
--}
--
--@keyframes shine {
--  0% { background-position: 0 }
--  60% { background-position: 180px }
--  100% { background-position: 180px }
--}
--
--/* Estilos para secciones */
--.section {
--  padding: calc(var(--spacing-unit) * 6) 0;
--  margin-top: 60px;
--}
--
--/* Estilos para grids de servicios y paquetes */
--.services-grid, .package-grid {
--  display: grid;
--  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
--  gap: var(--spacing-unit);
--  padding: 0 var(--spacing-unit);
--}
--
--.service-item, .package-item {
--  background: linear-gradient(135deg, var(--item-background) 0%, #3a3a3a 100%);
--  border: 2px solid var(--primary-color);
--  border-radius: 15px;
--  padding: var(--spacing-unit) calc(var(--spacing-unit) * 2) calc(var(--spacing-unit) * 2);
--  display: flex;
--  flex-direction: column;
--  transition: all 0.3s ease;
--}
--
--.service-item:hover, .package-item:hover {
--  transform: translateY(-5px);
--  box-shadow: 0 8px 15px rgba(212, 175, 55, 0.4);
--}
--
--.service-buttons, .package-item .button-container {
--  display: flex;
--  justify-content: space-between;
--  margin-top: auto;
--}
--
--.service-buttons button, .package-item button {
--  background-color: var(--primary-color);
--  color: var(--background-color);
--  border: none;
--  padding: calc(var(--spacing-unit) * 0.5) var(--spacing-unit);
--  border-radius: 25px;
--  font-weight: bold;
--  font-size: 1rem;
--  flex: 1;
--  margin: 0 5px;
--  max-width: 150px;
--  cursor: pointer;
--  transition: all 0.3s ease;
--}
--
--.service-buttons button:hover, .package-item button:hover {
--  background-color: var(--gold);
--  transform: translateY(-2px);
--  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
--}
--
--/* Estilos para la barra fija inferior */
--.fixed-bar {
--  position: fixed;
--  bottom: 0;
--  left: 0;
--  width: 100%;
--  background-color: var(--header-background);
--  padding: var(--spacing-unit) 0;
--  z-index: 1000;
--}
--
--.fixed-bar .main-nav ul {
--  display: flex;
--  justify-content: space-around;
--  list-style-type: none;
--  padding: 0;
--  margin: 0;
--}
--
--.fixed-bar .main-nav a {
--  color: var(--text-color);
--  text-decoration: none;
--  display: flex;
--  flex-direction: column;
--  align-items: center;
--}
--
--.fixed-bar .nav-icon {
--  width: 24px;
--  height: 24px;
--  margin-bottom: calc(var(--spacing-unit) * 0.5);
--}
--
--.fixed-bar .nav-text {
--  font-size: 12px;
--}
--
--/* Estilos para el selector de idioma */
--.language-selector {
--  position: relative;
--}
--
--.language-options {
--  display: none;
--  position: absolute;
--  top: 100%;
--  right: 0;
--  background-color: var(--item-background);
--  border-radius: 4px;
--  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
--}
--
--.language-options.show {
--  display: block;
--}
--
--.lang-option {
--  display: flex;
--  align-items: center;
--  padding: 8px 12px;
--  cursor: pointer;
--  transition: background-color 0.3s;
--}
--
--.lang-option:hover {
--  background-color: var(--primary-color);
--}
--
--.lang-option img {
--  width: 20px;
--  height: 20px;
--  margin-right: 8px;
--}
--
--/* Estilos para la sección de experiencias (checkboxes) */
--.checkbox-group {
--  display: flex;
--  flex-wrap: wrap;
--  justify-content: center;
--  width: 100%;
--  max-width: 800px;
--  margin: 0 auto;
--}
--
--.checkbox-wrapper {
--  margin: 10px;
--}
--
--.checkbox-tile {
--  display: flex;
--  flex-direction: column;
--  align-items: center;
--  justify-content: center;
--  width: 150px;
--  height: 150px;
--  border-radius: 10px;
--  border: 2px solid var(--primary-color);
--  background-color: var(--item-background);
--  transition: all 0.3s ease;
--  cursor: pointer;
--}
--
--.checkbox-tile:hover {
--  transform: translateY(-5px);
--  box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
--}
--
--.checkbox-icon {
--  font-size: 48px;
--  color: var(--primary-color);
--  margin-bottom: 10px;
--}
--
--.checkbox-label {
--  color: var(--text-color);
--  font-size: 14px;
--  text-align: center;
--}
--
--.checkbox-input {
--  display: none;
--}
--
--.checkbox-input:checked + .checkbox-tile {
--  background-color: var(--primary-color);
--}
--
--.checkbox-input:checked + .checkbox-tile .checkbox-icon,
--.checkbox-input:checked + .checkbox-tile .checkbox-label {
--  color: var(--background-color);
--}
--
--/* Estilos para la galería con efecto de persianas venecianas */
--.venetian-blinds {
--  width: 100%;
--  height: 400px;
--  position: relative;
--  overflow: hidden;
--}
--
--.blind {
--  position: absolute;
--  top: 0;
--  height: 100%;
--  background-size: cover;
--  background-position: center;
--  transition: all 0.5s ease;
--}
--
--/* Estilos para el Carrusel de Testimonios */
--.slider-wrap {
--  height: 100%;
--  width: 100%;
--}
--
--.slider {
--  position: relative;
--  width: 100%;
--  left: 50px;
--  top: 50px;
--}
--
--.slider-item {
--  width: 530px;
--  padding: 20px 0 25px 30px;
--  border-radius: 10px;
--  background-color: #ffffff;
--  display: flex;
--  justify-content: flex-start;
--  position: absolute;
--  opacity: 0;
--  z-index: 0;
--  box-shadow: 0 4px 9px #f1f1f4;
--  left: 0;
--  top: 0;
--}
--
--.animation-card_image {
--  max-width: 60px;
--  max-height: 60px;
--  display: flex;
--  justify-content: center;
--  align-items: center;
--  border-radius: 50%;
--  box-shadow: 0 4px 9px rgba(241, 241, 244, 0.72);
--  background-color: #ffffff;
--}
--
--.animation-card_image img {
--  width: 53px;
--  height: 53px;
--  border-radius: 50%;
--  object-fit: cover;
--}
--
--.animation-card_content {
--  width: 100%;
--  max-width: 374px;
--  margin-left: 26px;
--  font-family: "Open Sans", sans-serif;
--}
--
--.animation-card_content_title {
--  color: #4a4545;
--  font-size: 16px;
--  font-weight: 400;
--  letter-spacing: -.18px;
--  line-height: 24px;
--  margin: 0;
--}
--
--.animation-card_content_description {
--  color: #696d74;
--  font-size: 15px;
--  font-weight: 300;
--  letter-spacing: normal;
--  line-height: 24px;
--  margin: 10px 0 0 0;
--}
--
--.animation-card_content_city {
--  font-size: 12px;
--  margin: 10px 0 0 0;
--  font-weight: 500;
--  text-transform: uppercase;
--  color: #696d74;
--}
--
--/* Estilos para Acordeón */
--.accordion {
--  width: 100%;
--  max-width: 360px;
--  margin: 30px auto;
--  background: var(--item-background);
--  border-radius: 4px;
--}
--
--.accordion .link {
--  cursor: pointer;
--  display: block;
--  padding: 15px;
--  color: var(--text-color);
--  font-size: 14px;
--  position: relative;
--  transition: all 0.4s ease;
--}
--
--.accordion li i {
--  position: absolute;
--  top: 16px;
--  left: 12px;
--  font-size: 18px;
--  color: var(--text-color);
--  transition: all 0.4s ease;
--}
--
--.accordion li i.fa-chevron-down {
--  right: 12px;
--  left: auto;
--  font-size: 16px;
--}
--
--.accordion li.open .link { color: var(--primary-color); }
--
--.accordion li.open i { color: var(--primary-color); }
--
--.submenu {
--  display: none;
--  background: #444359;
--  font-size: 14px;
--}
--
--.submenu a {
--  display: block;
--  text-decoration: none;
--  color: #d9d9d9;
--  padding: 12px;
--  padding-left: 42px;
--  transition: all 0.25s ease;
--}
--
--.submenu a:hover {
--  background: var(--primary-color);
--  color: #FFF;
--}
--
--/* Estilos para el popup */
--.popup {
--  display: none;
--  position: fixed;
--  z-index: 1001;
--  left: 0;
--  top: 0;
--  width: 100%;
--  height: 100%;
--  overflow: auto;
--  background-color: rgba(0,0,0,0.4);
--}
--
--.popup-content {
--  background-color: var(--item-background);
--  margin: 15% auto;
--  padding: calc(var(--spacing-unit) * 2);
--  border: 1px solid var(--primary-color);
--  width: 80%;
--  max-width: 600px;
--  border-radius: 15px;
--  position: relative;
--}
--
--.close {
--  color: var(--text-color);
--  float: right;
--  font-size: 28px;
--  font-weight: bold;
--  cursor: pointer;
--}
--
--.close:hover,
--.close:focus {
--  color: var(--primary-color);
--  text-decoration: none;
--  cursor: pointer;
--}
--
--/* Estilos para las notificaciones toast */
--#toast {
--  visibility: hidden;
--  min-width: 250px;
--  margin-left: -125px;
--  background-color: var(--item-background);
--  color: var(--text-color);
--  text-align: center;
--  border-radius: 2px;
--  padding: 16px;
--  position: fixed;
--  z-index: 1002;
--  left: 50%;
--  bottom: 30px;
--}
--
--#toast.show {
--  visibility: visible;
--  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
--  animation: fadein 0.5s, fadeout 0.5s 2.5s;
--}
--
--@keyframes fadein {
--  from {bottom: 0; opacity: 0;}
--  to {bottom: 30px; opacity: 1;}
--}
--
--@keyframes fadeout {
--  from {bottom: 30px; opacity: 1;}
--  to {bottom: 0; opacity: 0;}
--}
--
--/* Estilos para SugerenciasParaTi */
--.sugerencias-container {
--  background-color: var(--item-background);
--  border-radius: 8px;
--  padding: 16px;
--  margin-top: 20px;
--}
--
--.sugerencia-item {
--  display: flex;
--  align-items: center;
--  justify-content: space-between;
--  background-color: var(--background-color);
--  border-radius: 8px;
--  padding: 12px;
--  margin-bottom: 12px;
--}
--
--.sugerencia-info {
--  display: flex;
--  align-items: center;
--}
--
--.sugerencia-avatar {
--  width: 48px;
--  height: 48px;
--  border-radius: 50%;
--  margin-right: 12px;
--}
--
--.sugerencia-nombre {
--  font-weight: bold;
--  color: var(--text-color);
--}
--
--.sugerencia-usuario {
--  color: #888888;
--}
--
--.sugerencia-seguir {
--  background-color: var(--primary-color);
--  color: var(--background-color);
--  border: none;
--  border-radius: 20px;
--  padding: 8px 16px;
--  cursor: pointer;
--  transition: background-color 0.3s;
--}
--
--.sugerencia-seguir:hover {
--  background-color: var(--gold);
--}
--
--/* Estilos para ServiceCard */
--.service-card {
--  background-color: var(--item-background);
--  border-radius: 8px;
--  overflow: hidden;
--  margin-bottom: 20px;
--}
--
--.service-card-content {
--  padding: 16px;
--}
--
--.service-card-title {
--  font-size: 1.25rem;
--  font-weight: bold;
--  color: var(--primary-color);
--  margin-bottom: 8px;
--}
--
--.service-card-description {
--  color: var(--text-color);
--  margin-bottom: 16px;
--}
--
--.service-card-benefits {
--  background-color: var(--header-background);
--  padding: 16px;
--}
--
--.service-card-benefits h4 {
--  color: var(--primary-color);
--  margin-bottom: 8px;
--}
--
--.service-card-benefits ul {
--  list-style-type: none;
--  padding: 0;
--}
--
--.service-card-benefits li {
--  color: var(--text-color);
--  margin-bottom: 4px;
--}
--
--.service-card-duration {
--  background-color: var(--primary-color);
--  color: var(--background-color);
--  padding: 8px 16px;
--  font-weight: bold;
--}
--
--.service-card-buttons {
--  display: flex;
--  justify-content: space-between;
--  padding: 16px;
--}
--
--.service-card-button {
--  padding: 8px 16px;
--  border: none;
--  border-radius: 4px;
--  cursor: pointer;
--  transition: background-color 0.3s;
--}
--
--.service-card-button-reserve {
--  background-color: var(--header-background);
--  color: var(--text-color);
--}
--
--.service-card-button-reserve:hover {
--  background-color: var(--primary-color);
--}
--
--.service-card-button-info {
--  background-color: #888888;
--  color: var(--text-color);
--}
--
--.service-card-button-info:hover {
--  background-color: #999999;
--}
--
--/* Estilos para la sección de Beneficios Destacados */
--.sugerencias-section {
--  background-color: var(--item-background);
--  padding: calc(var(--spacing-unit) * 2) 0;
--  overflow-x: auto;
--}
--
--.sugerencias-container {
--  display: flex;
--  justify-content: space-between;
--  align-items: center;
--  min-width: 100%;
--  padding: 0 var(--spacing-unit);
--}
--
--.sugerencia-item {
--  display: flex;
--  flex-direction: column;
--  align-items: center;
--  text-align: center;
--  padding: 0 var(--spacing-unit);
--  flex: 1;
--  min-width: 100px;
--}
--
--.sugerencia-icon {
--  width: 40px;
--  height: 40px;
--  margin-bottom: var(--spacing-unit);
--}
--
--.sugerencia-item p {
--  font-size: 14px;
--  margin-top: var(--spacing-unit);
--  white-space: nowrap;
--}
--
--/* Estilos para la paginación */
--.pagination-wrapper {
--  display: flex;
--  justify-content: center;
--  align-items: center;
--  margin-top: calc(var(--spacing-unit) * 2);
--}
--
--.btn {
--  background-color: var(--primary-color);
--  color: var(--background-color);
--  border: none;
--  padding: calc(var(--spacing-unit) * 0.5);
--  border-radius: 50%;
--  cursor: pointer;
--  transition: all 0.3s ease;
--}
--
--.btn:hover {
--  background-color: var(--gold);
--}
--
--.pagination-container {
--  display: flex;
--  align-items: center;
--  margin: 0 var(--spacing-unit);
--}
--
--.little-dot {
--  width: 8px;
--  height: 8px;
--  background-color: var(--text-color);
--  border-radius: 50%;
--  margin: 0 4px;
--}
--
--.big-dot-container {
--  width: 12px;
--  height: 12px;
--  background-color: var(--primary-color);
--  border-radius: 50%;
--  display: flex;
--  justify-content: center;
--  align-items: center;
--}
--
--.big-dot {
--  width: 8px;
--  height: 8px;
--  background-color: var(--background-color);
--  border-radius: 50%;
--}
--
--/* Estilos para el selector de categoría */
--.category-selector {
--  display: flex;
--  justify-content: center;
--  margin-bottom: calc(var(--spacing-unit) * 2);
--}
--
--.choice-chip {
--  background-color: var(--item-background);
--  color: var(--text-color);
--  border: 2px solid var(--primary-color);
--  border-radius: 20px;
--  padding: calc(var(--spacing-unit) * 0.5) var(--spacing-unit);
--  margin: 0 var(--spacing-unit);
--  cursor: pointer;
--  transition: all 0.3s ease;
--}
--
--.choice-chip.active,
--.choice-chip:hover {
--  background-color: var(--primary-color);
--  color: var(--background-color);
--}
--
--/* Estilos para la barra de navegación Daily UI */
--.daily-ui-nav {
--  background-color: var(--header-background);
--  padding: 10px 0;
--  position: sticky;
--  top: 60px;
--  z-index: 999;
--}
--
--.daily-ui-nav ul {
--  display: flex;
--  justify-content: space-around;
--  list-style-type: none;
--  padding: 0;
--  margin: 0;
--}
--
--.daily-ui-nav a {
--  color: var(--text-color);
--  text-decoration: none;
--  font-weight: bold;
--  transition: color 0.3s ease;
--}
--
--.daily-ui-nav a:hover {
--  color: var(--primary-color);
--}
--
--/* Estilos para la sección Elige */
--.elige {
--  background-color: var(--item-background);
--  padding: 40px 0;
--}
--
--/* Estilos para la sección Planea */
--.planea {
--  background-color: var(--background-color);
--  padding: 40px 0;
--}
--
--#planea-form {
--  max-width: 600px;
--  margin: 0 auto;
--}
--
--#planea-form textarea {
--  width: 100%;
--  height: 150px;
--  margin-bottom: 20px;
--  padding: 10px;
--  border-radius: 5px;
--  border: 1px solid var(--primary-color);
--  background-color: var(--item-background);
--  color: var(--text-color);
--}
--
--#planea-form button {
--  background-color: var(--primary-color);
--  color: var(--background-color);
--  border: none;
--  padding: 10px 20px;
--  border-radius: 5px;
--  cursor: pointer;
--  transition: background-color 0.3s ease;
--}
--
--#planea-form button:hover {
--  background-color: var(--gold);
--}
--
--/* Estilos para la sección Test */
--.test {
--  background-color: var(--item-background);
--  padding: 40px 0;
--}
--
--.test-container {
--  display: flex;
--  justify-content: space-between;
--  margin-bottom: 30px;
--}
--
--.test-option {
--  width: 48%;
--  background-color: var(--background-color);
--  padding: 20px;
--  border-radius: 10px;
--}
--
--#test-form {
--  max-width: 600px;
--  margin: 0 auto;
--}
--
--#test-form input,
--#test-form select {
--  width: 100%;
--  margin-bottom: 15px;
--  padding: 10px;
--  border-radius: 5px;
--  border: 1px solid var(--primary-color);
--  background-color: var(--item-background);
--  color: var(--text-color);
--}
--
--#test-form button {
--  background-color: var(--primary-color);
--  color: var(--background-color);
--  border: none;
--  padding: 10px 20px;
--  border-radius: 5px;
--  cursor: pointer;
--  transition: background-color 0.3s ease;
--}
--
--#test-form button:hover {
--  background-color: var(--gold);
--}
--
--/* Estilos para la sección Venetian */
--.venetian {
--  background-color: var(--background-color);
--  padding: 40px 0;
--}
--
--.venetian-blinds {
--  height: 400px;
--  position: relative;
--  overflow: hidden;
--  margin-bottom: 20px;
--}
--
--#finalizar-venetian {
--  background-color: var(--primary-color);
--  color: var(--background-color);
--  border: none;
--  padding: 10px 20px;
--  border-radius: 5px;
--  cursor: pointer;
--  transition: background-color 0.3s ease;
--}
--
--#finalizar-venetian:hover {
--  background-color: var(--gold);
--}
--
--/* Estilos responsivos */
--@media (max-width: 768px) {
--  .slider-item {
--    width: 90%;
--    left: 5%;
--  }
--
--  .accordion {
--    width: 90%;
--  }
--
--  .header-top {
--    flex-direction: column;
--  }
--
--  .services-grid, .package-grid {
--    grid-template-columns: 1fr;
--  }
--
--  .fixed-bar .nav-text {
--    display: none;
--  }
--
--  .checkbox-tile {
--    width: 120px;
--    height: 120px;
--  }
--
--  .sugerencias-container,
--  .package-benefits {
--    justify-content: flex-start;
--    padding-bottom: var(--spacing-unit);
--  }
--
--  .sugerencia-item,
--  .package-benefit-item {
--    flex: 0 0 auto;
--    width: 120px;
--  }
--
--  .main-nav {
--    margin-top: var(--spacing-unit);
--  }
--
--  .main-nav ul {
--    flex-direction: column;
--    align-items: center;
--  }
--
--  .main-nav li {
--    margin: var(--spacing-unit) 0;
--  }
--
--  .category-selector {
--    flex-direction: column;
--    align-items: center;
--  }
--
--  .choice-chip {
--    margin: var(--spacing-unit) 0;
--  }
--
--  .daily-ui-nav ul {
--    flex-wrap: wrap;
--  }
--
--  .daily-ui-nav li {
--    flex: 0 0 50%;
--    text-align: center;
--    margin-bottom: 10px;
--  }
--
--  .test-container {
--    flex-direction: column;
--  }
--
--  .test-option {
--    width: 100%;
--    margin-bottom: 20px;
--  }
--}
-+/* Estilos existentes... */
-+
-+/* Nuevos estilos para la barra de navegación Daily UI */
-+.daily-ui-nav {
-+  background-color: var(--header-background);
-+  padding: 10px 0;
-+  position: sticky;
-+  top: 60px;
-+  z-index: 999;
-+}
-+
-+.daily-ui-nav .container {
-+  display: flex;
-+  justify-content: space-around;
-+}
-+
-+.dropdown-wrapper {
-+  position: relative;
-+}
-+
-+.dropdown-wrapper button {
-+  background-color: transparent;
-+  color: var(--text-color);
-+  border: none;
-+  padding: 10px 15px;
-+  font-size: 16px;
-+  cursor: pointer;
-+}
-+
-+.dropdown-menu {
-+  display: none;
-+  position: absolute;
-+  background-color: var(--item-background);
-+  min-width: 200px;
-+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-+  z-index: 1;
-+}
-+
-+.dropdown-menu.show {
-+  display: block;
-+}
-+
-+.dropdown-menu ul {
-+  list-style-type: none;
-+  padding: 0;
-+}
-+
-+.dropdown-menu li a {
-+  color: var(--text-color);
-+  padding: 12px 16px;
-+  text-decoration: none;
-+  display: block;
-+}
-+
-+.dropdown-menu li a:hover {
-+  background-color: var(--primary-color);
-+  color: var(--background-color);
-+}
-+
-+/* Estilos para las tarjetas de experiencias en "Planea tu Experiencia" */
-+.cards {
-+  display: flex;
-+  flex-wrap: wrap;
-+  justify-content: space-around;
-+}
-+
-+.card {
-+  background-color: var(--item-background);
-+  border-radius: 10px;
-+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-+  margin: 20px;
-+  width: 300px;
-+  overflow: hidden;
-+  transition: transform 0.3s ease;
-+}
-+
-+.card:hover {
-+  transform: translateY(-5px);
-+}
-+
-+.card-content {
-+  padding: 20px;
-+}
-+
-+.card-toggle {
-+  background-color: var(--primary-color);
-+  color: var(--background-color);
-+  padding: 10px;
-+  text-align: center;
-+  cursor: pointer;
-+}
-+
-+/* Estilos para los switches en la sección "Test" */
-+.switch {
-+  position: relative;
-+  display: inline-block;
-+  width: 60px;
-+  height: 34px;
-+}
-+
-+.switch__input {
-+  opacity: 0;
-+  width: 0;
-+  height: 0;
-+}
-+
-+.switch__base-outer,
-+.switch__base-inner,
-+.switch__base-neon {
-+  position: absolute;
-+  cursor: pointer;
-+  top: 0;
-+  left: 0;
-+  right: 0;
-+  bottom: 0;
-+  background-color: #ccc;
-+  transition: .4s;
-+  border-radius: 34px;
-+}
-+
-+.switch__base-inner {
-+  background-color: var(--item-background);
-+  border-radius: 32px;
-+  top: 2px;
-+  left: 2px;
-+  right: 2px;
-+  bottom: 2px;
-+}
-+
-+.switch__base-neon {
-+  opacity: 0;
-+  transition: opacity .4s;
-+}
-+
-+.switch__input:checked + .switch__base-outer + .switch__base-inner + .switch__base-neon {
-+  opacity: 1;
-+}
-+
-+.switch__knob {
-+  position: absolute;
-+  content: "";
-+  height: 26px;
-+  width: 26px;
-+  left: 4px;
-+  bottom: 4px;
-+  background-color: white;
-+  transition: .4s;
-+  border-radius: 50%;
-+}
-+
-+.switch__input:checked + .switch__base-outer .switch__knob {
-+  transform: translateX(26px);
-+}
-+
-+/* Estilos para la nueva galería */
-+.wrapper {
-+  max-width: 1200px;
-+  margin: 0 auto;
-+}
-+
-+.list {
-+  display: flex;
-+  flex-wrap: wrap;
-+}
-+
-+.left, .right {
-+  flex: 1;
-+  padding: 10px;
-+}
-+
-+.image {
-+  position: relative;
-+  margin-bottom: 20px;
-+  overflow: hidden;
-+  border-radius: 10px;
-+}
-+
-+.img {
-+  width: 100%;
-+  height: 0;
-+  padding-bottom: 100%;
-+  background-size: cover;
-+  background-position: center;
-+}
-+
-+.img-vert {
-+  padding-bottom: 150%;
-+}
-+
-+.img-hor {
-+  padding-bottom: 75%;
-+}
-+
-+.info {
-+  position: absolute;
-+  bottom: 0;
-+  left: 0;
-+  right: 0;
-+  background: rgba(0,0,0,0.7);
-+  color: white;
-+  padding: 10px;
-+  transform: translateY(100%);
-+  transition: transform 0.3s ease;
-+}
-+
-+.image:hover .info {
-+  transform: translateY(0);
-+}
-+
-+/* Estilos para las tarjetas de experiencias en "Experiencias de Nuestros Clientes" */
-+.cols {
-+  display: flex;
-+  flex-wrap: wrap;
-+  justify-content: center;
-+}
-+
-+.col {
-+  width: 300px;
-+  margin: 15px;
-+  perspective: 1000px;
-+}
-+
-+.container {
-+  transform-style: preserve-3d;
-+  transition: transform 0.8s;
-+}
-+
-+.front, .back {
-+  position: absolute;
-+  width: 100%;
-+  height: 100%;
-+  backface-visibility: hidden;
-+  border-radius: 10px;
-+  overflow: hidden;
-+}
-+
-+.front {
-+  background-size: cover;
-+  background-position: center;
-+  color: white;
-+  display: flex;
-+  align-items: flex-end;
-+  padding: 20px;
-+}
-+
-+.back {
-+  background-color: var(--item-background);
-+  color: var(--text-color);
-+  transform: rotateY(180deg);
-+  display: flex;
-+  align-items: center;
-+  justify-content: center;
-+  padding: 20px;
-+  text-align: center;
-+}
-+
-+.container:hover {
-+  transform: rotateY(180deg);
-+}
-+
-+/* Estilos responsivos */
-+@media (max-width: 768px) {
-+  .daily-ui-nav .container {
-+    flex-direction: column;
-+  }
-+
-+  .dropdown-wrapper {
-+    width: 100%;
-+    margin-bottom: 10px;
-+  }
-+
-+  .card {
-+    width: 100%;
-+  }
-+
-+  .left, .right {
-+    flex: 0 0 100%;
-+  }
-+
-+  .col {
-+    width: 100%;
-+  }
-+}
-+
-+/* Resto de los estilos existentes... */
+/* Estilos generales y variables */
+:root {
+  --primary-color: #D4AF37;
+  --secondary-color: #8B4513;
+  --text-color: #ffffff;
+  --background-color: #1a1a1a;
+  --item-background: #2a2a2a;
+  --header-background: #4c0026;
+  --main-blue: #082032;
+  --gold: #FFD700;
+  --spacing-unit: 8px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  background: linear-gradient(270deg, var(--background-color), #2c2c2c, #3a3a3a);
+  background-size: 600% 600%;
+  animation: gradientTransition 15s ease infinite;
+  color: var(--text-color);
+  padding-bottom: 60px;
+}
+
+@keyframes gradientTransition {
+  0% { background-position: 0% 50% }
+  50% { background-position: 100% 50% }
+  100% { background-position: 0% 50% }
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-unit);
+}
+
+/* Estilos para el encabezado */
+#sticky-header {
+  background-color: var(--header-background);
+  color: var(--text-color);
+  padding: var(--spacing-unit) 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: calc(var(--spacing-unit) * 0.5) var(--spacing-unit);
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  margin-right: var(--spacing-unit);
+}
+
+h1, h2 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+}
+
+h1 {
+  font-size: 24px;
+  letter-spacing: -0.5px;
+}
+
+/* Estilos para botones y enlaces */
+.btn-shine {
+  position: relative;
+  display: inline-block;
+  padding: calc(var(--spacing-unit) * 1.5) calc(var(--spacing-unit) * 6);
+  color: var(--text-color);
+  background: linear-gradient(to right, #4d4d4d 0, white 10%, #4d4d4d 20%);
+  background-position: 0;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shine 3s infinite linear;
+  animation-fill-mode: forwards;
+  -webkit-text-size-adjust: none;
+  font-weight: 600;
+  font-size: 16px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+@keyframes shine {
+  0% { background-position: 0 }
+  60% { background-position: 180px }
+  100% { background-position: 180px }
+}
+
+/* Estilos para secciones */
+.section {
+  padding: calc(var(--spacing-unit) * 6) 0;
+  margin-top: 60px;
+}
+
+/* Estilos para grids de servicios y paquetes */
+.services-grid, .package-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--spacing-unit);
+  padding: 0 var(--spacing-unit);
+}
+
+.service-item, .package-item {
+  background: linear-gradient(135deg, var(--item-background) 0%, #3a3a3a 100%);
+  border: 2px solid var(--primary-color);
+  border-radius: 15px;
+  padding: var(--spacing-unit) calc(var(--spacing-unit) * 2) calc(var(--spacing-unit) * 2);
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+}
+
+.service-item:hover, .package-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(212, 175, 55, 0.4);
+}
+
+.service-buttons, .package-item .button-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: auto;
+}
+
+.service-buttons button, .package-item button {
+  background-color: var(--primary-color);
+  color: var(--background-color);
+  border: none;
+  padding: calc(var(--spacing-unit) * 0.5) var(--spacing-unit);
+  border-radius: 25px;
+  font-weight: bold;
+  font-size: 1rem;
+  flex: 1;
+  margin: 0 5px;
+  max-width: 150px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.service-buttons button:hover, .package-item button:hover {
+  background-color: var(--gold);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Estilos para la barra fija inferior */
+.fixed-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: var(--header-background);
+  padding: var(--spacing-unit) 0;
+  z-index: 1000;
+}
+
+.fixed-bar .main-nav ul {
+  display: flex;
+  justify-content: space-around;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.fixed-bar .main-nav a {
+  color: var(--text-color);
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.fixed-bar .nav-icon {
+  width: 24px;
+  height: 24px;
+  margin-bottom: calc(var(--spacing-unit) * 0.5);
+}
+
+.fixed-bar .nav-text {
+  font-size: 12px;
+}
+
+/* Estilos para el selector de idioma */
+.language-selector {
+  position: relative;
+}
+
+.language-options {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: var(--item-background);
+  border-radius: 4px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+.language-options.show {
+  display: block;
+}
+
+.lang-option {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.lang-option:hover {
+  background-color: var(--primary-color);
+}
+
+.lang-option img {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+}
+
+/* Estilos para la sección de experiencias (checkboxes) */
+.checkbox-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.checkbox-wrapper {
+  margin: 10px;
+}
+
+.checkbox-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 150px;
+  height: 150px;
+  border-radius: 10px;
+  border: 2px solid var(--primary-color);
+  background-color: var(--item-background);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.checkbox-tile:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+}
+
+.checkbox-icon {
+  font-size: 48px;
+  color: var(--primary-color);
+  margin-bottom: 10px;
+}
+
+.checkbox-label {
+  color: var(--text-color);
+  font-size: 14px;
+  text-align: center;
+}
+
+.checkbox-input {
+  display: none;
+}
+
+.checkbox-input:checked + .checkbox-tile {
+  background-color: var(--primary-color);
+}
+
+.checkbox-input:checked + .checkbox-tile .checkbox-icon,
+.checkbox-input:checked + .checkbox-tile .checkbox-label {
+  color: var(--background-color);
+}
+
+/* Estilos para la galería con efecto de persianas venecianas */
+.venetian-blinds {
+  width: 100%;
+  height: 400px;
+  position: relative;
+  overflow: hidden;
+}
+
+.blind {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  transition: all 0.5s ease;
+}
+
+/* Estilos para el Carrusel de Testimonios */
+.slider-wrap {
+  height: 100%;
+  width: 100%;
+}
+
+.slider {
+  position: relative;
+  width: 100%;
+  left: 50px;
+  top: 50px;
+}
+
+.slider-item {
+  width: 530px;
+  padding: 20px 0 25px 30px;
+  border-radius: 10px;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: flex-start;
+  position: absolute;
+  opacity: 0;
+  z-index: 0;
+  box-shadow: 0 4px 9px #f1f1f4;
+  left: 0;
+  top: 0;
+}
+
+.animation-card_image {
+  max-width: 60px;
+  max-height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  box-shadow: 0 4px 9px rgba(241, 241, 244, 0.72);
+  background-color: #ffffff;
+}
+
+.animation-card_image img {
+  width: 53px;
+  height: 53px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.animation-card_content {
+  width: 100%;
+  max-width: 374px;
+  margin-left: 26px;
+  font-family: "Open Sans", sans-serif;
+}
+
+.animation-card_content_title {
+  color: #4a4545;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: -.18px;
+  line-height: 24px;
+  margin: 0;
+}
+
+.animation-card_content_description {
+  color: #696d74;
+  font-size: 15px;
+  font-weight: 300;
+  letter-spacing: normal;
+  line-height: 24px;
+  margin: 10px 0 0 0;
+}
+
+.animation-card_content_city {
+  font-size: 12px;
+  margin: 10px 0 0 0;
+  font-weight: 500;
+  text-transform: uppercase;
+  color: #696d74;
+}
+
+/* Estilos para Acordeón */
+.accordion {
+  width: 100%;
+  max-width: 360px;
+  margin: 30px auto;
+  background: var(--item-background);
+  border-radius: 4px;
+}
+
+.accordion .link {
+  cursor: pointer;
+  display: block;
+  padding: 15px;
+  color: var(--text-color);
+  font-size: 14px;
+  position: relative;
+  transition: all 0.4s ease;
+}
+
+.accordion li i {
+  position: absolute;
+  top: 16px;
+  left: 12px;
+  font-size: 18px;
+  color: var(--text-color);
+  transition: all 0.4s ease;
+}
+
+.accordion li i.fa-chevron-down {
+  right: 12px;
+  left: auto;
+  font-size: 16px;
+}
+
+.accordion li.open .link { color: var(--primary-color); }
+
+.accordion li.open i { color: var(--primary-color); }
+
+.submenu {
+  display: none;
+  background: #444359;
+  font-size: 14px;
+}
+
+.submenu a {
+  display: block;
+  text-decoration: none;
+  color: #d9d9d9;
+  padding: 12px;
+  padding-left: 42px;
+  transition: all 0.25s ease;
+}
+
+.submenu a:hover {
+  background: var(--primary-color);
+  color: #FFF;
+}
+
+/* Estilos para el popup */
+.popup {
+  display: none;
+  position: fixed;
+  z-index: 1001;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.4);
+}
+
+.popup-content {
+  background-color: var(--item-background);
+  margin: 15% auto;
+  padding: calc(var(--spacing-unit) * 2);
+  border: 1px solid var(--primary-color);
+  width: 80%;
+  max-width: 600px;
+  border-radius: 15px;
+  position: relative;
+}
+
+.close {
+  color: var(--text-color);
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+  color: var(--primary-color);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Estilos para las notificaciones toast */
+#toast {
+  visibility: hidden;
+  min-width: 250px;
+  margin-left: -125px;
+  background-color: var(--item-background);
+  color: var(--text-color);
+  text-align: center;
+  border-radius: 2px;
+  padding: 16px;
+  position: fixed;
+  z-index: 1002;
+  left: 50%;
+  bottom: 30px;
+}
+
+#toast.show {
+  visibility: visible;
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+@keyframes fadein {
+  from {bottom: 0; opacity: 0;}
+  to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadeout {
+  from {bottom: 30px; opacity: 1;}
+  to {bottom: 0; opacity: 0;}
+}
+
+/* Estilos para SugerenciasParaTi */
+.sugerencias-container {
+  background-color: var(--item-background);
+  border-radius: 8px;
+  padding: 16px;
+  margin-top: 20px;
+}
+
+.sugerencia-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--background-color);
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 12px;
+}
+
+.sugerencia-info {
+  display: flex;
+  align-items: center;
+}
+
+.sugerencia-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  margin-right: 12px;
+}
+
+.sugerencia-nombre {
+  font-weight: bold;
+  color: var(--text-color);
+}
+
+.sugerencia-usuario {
+  color: #888888;
+}
+
+.sugerencia-seguir {
+  background-color: var(--primary-color);
+  color: var(--background-color);
+  border: none;
+  border-radius: 20px;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.sugerencia-seguir:hover {
+  background-color: var(--gold);
+}
+
+/* Estilos para ServiceCard */
+.service-card {
+  background-color: var(--item-background);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.service-card-content {
+  padding: 16px;
+}
+
+.service-card-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: var(--primary-color);
+  margin-bottom: 8px;
+}
+
+.service-card-description {
+  color: var(--text-color);
+  margin-bottom: 16px;
+}
+
+.service-card-benefits {
+  background-color: var(--header-background);
+  padding: 16px;
+}
+
+.service-card-benefits h4 {
+  color: var(--primary-color);
+  margin-bottom: 8px;
+}
+
+.service-card-benefits ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.service-card-benefits li {
+  color: var(--text-color);
+  margin-bottom: 4px;
+}
+
+.service-card-duration {
+  background-color: var(--primary-color);
+  color: var(--background-color);
+  padding: 8px 16px;
+  font-weight: bold;
+}
+
+.service-card-buttons {
+  display: flex;
+  justify-content: space-between;
+  padding: 16px;
+}
+
+.service-card-button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.service-card-button-reserve {
+  background-color: var(--header-background);
+  color: var(--text-color);
+}
+
+.service-card-button-reserve:hover {
+  background-color: var(--primary-color);
+}
+
+.service-card-button-info {
+  background-color: #888888;
+  color: var(--text-color);
+}
+
+.service-card-button-info:hover {
+  background-color: #999999;
+}
+
+/* Estilos para la sección de Beneficios Destacados */
+.sugerencias-section {
+  background-color: var(--item-background);
+  padding: calc(var(--spacing-unit) * 2) 0;
+  overflow-x: auto;
+}
+
+.sugerencias-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-width: 100%;
+  padding: 0 var(--spacing-unit);
+}
+
+.sugerencia-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0 var(--spacing-unit);
+  flex: 1;
+  min-width: 100px;
+}
+
+.sugerencia-icon {
+  width: 40px;
+  height: 40px;
+  margin-bottom: var(--spacing-unit);
+}
+
+.sugerencia-item p {
+  font-size: 14px;
+  margin-top: var(--spacing-unit);
+  white-space: nowrap;
+}
+
+/* Estilos para la paginación */
+.pagination-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: calc(var(--spacing-unit) * 2);
+}
+
+.btn {
+  background-color: var(--primary-color);
+  color: var(--background-color);
+  border: none;
+  padding: calc(var(--spacing-unit) * 0.5);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  background-color: var(--gold);
+}
+
+.pagination-container {
+  display: flex;
+  align-items: center;
+  margin: 0 var(--spacing-unit);
+}
+
+.little-dot {
+  width: 8px;
+  height: 8px;
+  background-color: var(--text-color);
+  border-radius: 50%;
+  margin: 0 4px;
+}
+
+.big-dot-container {
+  width: 12px;
+  height: 12px;
+  background-color: var(--primary-color);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.big-dot {
+  width: 8px;
+  height: 8px;
+  background-color: var(--background-color);
+  border-radius: 50%;
+}
+
+/* Estilos para el selector de categoría */
+.category-selector {
+  display: flex;
+  justify-content: center;
+  margin-bottom: calc(var(--spacing-unit) * 2);
+}
+
+.choice-chip {
+  background-color: var(--item-background);
+  color: var(--text-color);
+  border: 2px solid var(--primary-color);
+  border-radius: 20px;
+  padding: calc(var(--spacing-unit) * 0.5) var(--spacing-unit);
+  margin: 0 var(--spacing-unit);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.choice-chip.active,
+.choice-chip:hover {
+  background-color: var(--primary-color);
+  color: var(--background-color);
+}
+
+/* Estilos para la barra de navegación Daily UI */
+.daily-ui-nav {
+  background-color: var(--header-background);
+  padding: 10px 0;
+  position: sticky;
+  top: 60px;
+  z-index: 999;
+}
+
+.daily-ui-nav .container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.dropdown-wrapper {
+  position: relative;
+}
+
+.dropdown-wrapper button {
+  background-color: transparent;
+  color: var(--text-color);
+  border: none;
+  padding: 10px 15px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  background-color: var(--item-background);
+  min-width: 200px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-menu.show {
+  display: block;
+}
+
+.dropdown-menu ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.dropdown-menu li a {
+  color: var(--text-color);
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-menu li a:hover {
+  background-color: var(--primary-color);
+  color: var(--background-color);
+}
+
+/* Estilos para las tarjetas de experiencias en "Planea tu Experiencia" */
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.card {
+  background-color: var(--item-background);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  margin: 20px;
+  width: 300px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card-content {
+  padding: 20px;
+}
+
+.card-toggle {
+  background-color: var(--primary-color);
+  color: var(--background-color);
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
+}
+
+/* Estilos para los switches en la sección "Test" */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch__input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.switch__base-outer,
+.switch__base-inner,
+.switch__base-neon {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+  border-radius: 34px;
+}
+
+.switch__base-inner {
+  background-color: var(--item-background);
+  border-radius: 32px;
+  top: 2px;
+  left: 2px;
+  right: 2px;
+  bottom: 2px;
+}
+
+.switch__base-neon {
+  opacity: 0;
+  transition: opacity .4s;
+}
+
+.switch__input:checked + .switch__base-outer + .switch__base-inner + .switch__base-neon {
+  opacity: 1;
+}
+
+.switch__knob {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+.switch__input:checked + .switch__base-outer .switch__knob {
+  transform: translateX(26px);
+}
+
+/* Estilos para la nueva galería */
+.wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.left, .right {
+  flex: 1;
+  padding: 10px;
+}
+
+.image {
+  position: relative;
+  margin-bottom: 20px;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.img {
+  width: 100%;
+  height: 0;
+  padding-bottom: 100%;
+  background-size: cover;
+  background-position: center;
+}
+
+.img-vert {
+  padding-bottom: 150%;
+}
+
+.img-hor {
+  padding-bottom: 75%;
+}
+
+.info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0,0,0,0.7);
+  color: white;
+  padding: 10px;
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+}
+
+.image:hover .info {
+  transform: translateY(0);
+}
+
+/* Estilos para las tarjetas de experiencias en "Experiencias de Nuestros Clientes" */
+.cols {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.col {
+  width: 300px;
+  margin: 15px;
+  perspective: 1000px;
+}
+
+.container {
+  transform-style: preserve-3d;
+  transition: transform 0.8s;
+}
+
+.front, .back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.front {
+  background-size: cover;
+  background-position: center;
+  color: white;
+  display: flex;
+  align-items: flex-end;
+  padding: 20px;
+}
+
+.back {
+  background-color: var(--item-background);
+  color: var(--text-color);
+  transform: rotateY(180deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  text-align: center;
+}
+
+.container:hover {
+  transform: rotateY(180deg);
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+  .daily-ui-nav .container {
+    flex-direction: column;
+  }
+
+  .dropdown-wrapper {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .card {
+    width: 100%;
+  }
+
+  .left, .right {
+    flex: 0 0 100%;
+  }
+
+  .col {
+    width: 100%;
+  }
+}
+
+/* Resto de los estilos existentes... */
